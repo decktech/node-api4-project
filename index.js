@@ -1,6 +1,7 @@
 require('dotenv').config()
 const express = require('express')
 const cors = require('cors')
+const users = require('./api/users')
 
 const server = express()
 
@@ -10,7 +11,7 @@ server.use(express.json())
 server.use(cors())
 
 server.get('/api/users', (req, res, next) => {
-    res.json({ message: "api working"})
+    res.json(users)
 })
 
 
