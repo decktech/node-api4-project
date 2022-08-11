@@ -14,6 +14,22 @@ server.get('/api/users', (req, res, next) => {
     res.json(users)
 })
 
+server.post('/api/register', (req, res, next) => {
+    res.json(req.body)
+})
+
+server.post('/api/login', (req, res, next) => {
+    if (req.body.name == null || req.body.password == null) {
+        res.status(400).json({ message: 'name and password required'})
+        next();
+    }
+    if (req.body.name === "" || req.body.password === "") {
+        res.status(400).json({ message: 'name and password required'})
+        next();
+    }
+
+    res.status(200).json({ message: "successful login"})
+})
 
 server.use('*', (req, res, next) => {
     res.send(`<h2>Hello</h2>`)
